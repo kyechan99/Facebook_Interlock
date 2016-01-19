@@ -35,3 +35,13 @@
 >2. ```package```이름 변경 ([AndroidManifest.xml](https://github.com/kyechan99/Kakao_Interlock/blob/master/kakaoLogin/AndroidManifest.xml))
 
 >3. ```activity``` 파일들 ([.java](https://github.com/kyechan99/Kakao_Interlock/tree/master/kakaoLogin/src/org/cocos2dx/cpp))
+
+
+
+
+-
+
+
+## JNI Helper
+도움 : http://blog.naver.com/kyechan99/220552861010
+
