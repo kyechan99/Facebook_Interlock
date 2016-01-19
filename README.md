@@ -14,11 +14,11 @@
 파일 설명 : http://blog.naver.com/kyechan99/220552974963
 
 ####※ 사용하실때 참고해야할 부분
->1. ```appname```과 ```kakao_app_key```, ```kakao_scheme``` 부분을 네이티브키로 변경 ([res/values/string.xml](https://github.com/kyechan99/Kakao_Interlock/blob/master/kakaoLink/res/values/strings.xml))
+>1. ```appname```과 ```facebook_app_id``` 부분을 네이티브키로 변경 ([res/values/string.xml](https://github.com/kyechan99/Facebook_Interlock/blob/master/facebookShare/res/values/strings.xml))
 
->2. ```package```이름 변경 ([AndroidManifest.xml](https://github.com/kyechan99/Kakao_Interlock/blob/master/kakaoLink/AndroidManifest.xml))
+>2. ```package```이름 변경 ([AndroidManifest.xml](https://github.com/kyechan99/Facebook_Interlock/blob/master/facebookShare/AndroidManifest.xml))
 
->3. ```activity``` 파일들 ([.java](https://github.com/kyechan99/Kakao_Interlock/tree/master/kakaoLogin/src/org/cocos2dx/cpp))
+>3. ```activity``` 파일들 ([.java](https://github.com/kyechan99/Facebook_Interlock/blob/master/facebookShare/src/org/cocos2dx/cpp/AppActivity.java))
 
 
 -
@@ -30,11 +30,11 @@
 파일 설명 : 
 
 ####※ 사용하실때 참고해야할 부분
->1. ```appname```과 ```kakao_app_key``` 부분을 네이티브키로 변경 ([res/values/string.xml](https://github.com/kyechan99/Kakao_Interlock/blob/master/kakaoLogin/res/values/strings.xml))
+>1. ```appname```과 ```facebook_app_id``` 부분을 네이티브키로 변경 ([res/values/string.xml](https://github.com/kyechan99/Facebook_Interlock/blob/master/facebookLogin/res/values/strings.xml))
 
->2. ```package```이름 변경 ([AndroidManifest.xml](https://github.com/kyechan99/Kakao_Interlock/blob/master/kakaoLogin/AndroidManifest.xml))
+>2. ```package```이름 변경, activity 활동 수정 ([AndroidManifest.xml](https://github.com/kyechan99/Facebook_Interlock/blob/master/facebookLogin/AndroidManifest.xml))
 
->3. ```activity``` 파일들 ([.java](https://github.com/kyechan99/Kakao_Interlock/tree/master/kakaoLogin/src/org/cocos2dx/cpp))
+>3. ```activity``` 파일들 ([.java](https://github.com/kyechan99/Facebook_Interlock/tree/master/facebookLogin/src/org/cocos2dx/cpp))
 
 
 
