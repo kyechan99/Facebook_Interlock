@@ -1,22 +1,34 @@
 package org.cocos2dx.cpp;
 
+import java.security.MessageDigest;
+import java.util.Arrays;
+import java.util.Collection;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.fTest.abcd.R;
+import com.asdf.platon.R;
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
+import com.facebook.HttpMethod;
+import com.facebook.Profile;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -27,25 +39,37 @@ public class LoginActivity extends Activity {
 	String name="";
 	String email="";
 	Context mContext;
+	LoginManager loginManager;
 	
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		FacebookSdk.sdkInitialize(this.getApplicationContext());
+		
 		mContext = getApplicationContext();
 		actInstance = this;
 	
-		FacebookSdk.sdkInitialize(this.getApplicationContext());
-		setContentView(R.layout.activity_face);
-
-
+		// ==================================================================
+		//1. ë¡œê·¸ì¸ ë²„íŠ¼ì—†ì´ ë°”ë¡œ ì¸ì¦í•˜ë ¤ í•œë‹¤ë©´ 1.ë¡œ ë˜ìˆëŠ” ì£¼ì„ ì œê±°
+		//2. ë¡œê·¸ì¸ ë²„íŠ¼ì„ ì´ìš©í•˜ë ¤ í•˜ë©´ 2.ë¡œ ë˜ì–´ìˆëŠ” ì£¼ì„ ì œê±°
+		// ==================================================================
 		
-		callbackManager = CallbackManager.Factory.create();
-		LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
-		loginButton.setReadPermissions("email");
-		loginButton.registerCallback(callbackManager,
-				new FacebookCallback<LoginResult>() {
+		//2. setContentView(R.layout.activity_face);
+
+		//1. callbackManager = CallbackManager.Factory.create();
+		
+		//1. loginManager = LoginManager.getInstance();
+		
+		//1. loginManager.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+			
+		//});
+		//2. LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
+		//2. loginButton.setReadPermissions("email");
+		//2. loginButton.registerCallback(callbackManager,
+		//2.		new FacebookCallback<LoginResult>() {
 					@Override
-					public void onSuccess(LoginResult loginResult) {//·Î±×ÀÎÀÌ ¼º°øµÇ¾úÀ»¶§ È£Ãâ
+					public void onSuccess(LoginResult loginResult) {
 						GraphRequest request = GraphRequest.newMeRequest(
 								loginResult.getAccessToken(),
 	                            new GraphRequest.GraphJSONObjectCallback() {
@@ -55,49 +79,53 @@ public class LoginActivity extends Activity {
 	                                        GraphResponse response) {
 	                                    // Application code
 	                                	try {
-											  
-						id = (String) response.getJSONObject().get("id");//ÆäÀÌ½ººÏ ¾ÆÀÌµğ°ª
-						name = (String) response.getJSONObject().get("name");//ÆäÀÌ½ººÏ ÀÌ¸§
-						email = (String) response.getJSONObject().get("email");//ÀÌ¸ŞÀÏ
-											  
-										} catch (JSONException e) {
-											// TODO Auto-generated catch block
-											e.printStackTrace();
-										}
-	                                	
-	                              // new joinTask().execute(); //ÀÚ½ÅÀÇ ¼­¹ö¿¡¼­ ·Î±×ÀÎ Ã³¸®¸¦ ÇØÁİ´Ï´Ù
-	                                  
-	                                }
-	                            });
-	                    Bundle parameters = new Bundle();
-	                    parameters.putString("fields", "id,name,email,gender, birthday");
+	                                		id = (String) response.getJSONObject().get("id");
+	                                		name = (String) response.getJSONObject().get("name");
+	                                		email = (String) response.getJSONObject().get("email");
+	                                		} catch (JSONException e) {
+	                                			// TODO Auto-generated catch block
+	                                			e.printStackTrace();
+	                                			}
+	                                	// new joinTask().execute(); //ìì‹ ì˜ ì„œë²„ì—ì„œ ë¡œê·¸ì¸ ì²˜ë¦¬ë¥¼ í•´ì¤ë‹ˆë‹¤
+	                                	}
+	                                });
+						Bundle parameters = new Bundle();
+	                    parameters.putString("fields", "id ,name, email");
 	                    request.setParameters(parameters);
 	                    request.executeAsync();
+	                    
+	                    
 					}
 
 					@Override
 					public void onCancel() {
-						Toast.makeText(LoginActivity.this, "·Î±×ÀÎÀ» Ãë¼Ò ÇÏ¿´½À´Ï´Ù!", Toast.LENGTH_SHORT).show();
+						Toast.makeText(LoginActivity.this, "ë¡œê·¸ì¸ì„ ì·¨ì†Œ í•˜ì˜€ìŠµë‹ˆë‹¤!", Toast.LENGTH_SHORT).show();
 						// App code
 					}
 
 					@Override
 					public void onError(FacebookException exception) {
-						Toast.makeText(LoginActivity.this, "¿¡·¯°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù", Toast.LENGTH_SHORT).show();
+						Toast.makeText(LoginActivity.this, "ì—ëŸ¬ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤", Toast.LENGTH_SHORT).show();
 						// App code
 					}
 				});
+		Collection<String> permissions = Arrays.asList("public_profile", "user_friends");
+
+        loginManager.logInWithReadPermissions(this, permissions); // Null Pointer Exception here
 	}
-	
+		
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		callbackManager.onActivityResult(requestCode, resultCode, data);
-		
-		Log.d("myLog"  ,"requestCode  "  + requestCode);
-		Log.d("myLog"  ,"resultCode"  + resultCode);
-		Log.d("myLog"  ,"data  "  + data.toString());
-		
+
+        redirectSignupActivity();
 	}
 	
+	protected void redirectSignupActivity() {
+		Log.d("redirectSignupActivity","redirectSignupActivity"); 		
+        final Intent intent = new Intent(this, AppActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }
