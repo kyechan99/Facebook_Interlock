@@ -10,7 +10,7 @@
 
 
 
-## Facebook Share (카카오 담벼락)
+## Facebook Share (페이스북 담벼락)
 파일 설명 : http://blog.naver.com/kyechan99/220552974963
 
 ####※ 사용하실때 참고해야할 부분
@@ -26,7 +26,7 @@
 
 
 
-## Facebook Login (카카오 로그인)
+## Facebook Login (페이스북 로그인)
 파일 설명 : 
 
 ####※ 사용하실때 참고해야할 부분
