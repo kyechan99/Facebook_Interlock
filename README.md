@@ -1,8 +1,8 @@
 # Facebook_Interlock
 페이스북 담벼락 글 올리기와 페이스북 로그인에 관하여 담겨 있습니다.
 + 페이스북 라이브러리 버전 : 4.5.1
-+ [카카오 개발자 사이트](https://developers.facebook.com/)
-+ [이메일 주소](kyechan99@naver.com)
++ [페이스북 개발자 사이트](https://developers.facebook.com/)
++ 이메일 주소 : kyechan99@naver.com
 + [블로그 주소](blog.naver.com/kyechan99)
 
 
